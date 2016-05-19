@@ -5,6 +5,10 @@ const { NODE_PATH: srcPath } = process.env;
 
 export default {
   devtool: 'source-map',
+  resolve: {
+    root: path.resolve(srcPath),
+    extensions: ['', '.js']
+  },
   entry: [
     'webpack-hot-middleware/client',
     `${srcPath}/index.js`

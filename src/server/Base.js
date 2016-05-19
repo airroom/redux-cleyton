@@ -10,7 +10,7 @@ export default class Base extends Component {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </head>
         <body>
-          <div id="root" />
+          <main id="root" />
           <script src="/dist/bundle.js"/>
         </body>
       </html>
