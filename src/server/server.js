@@ -2,14 +2,15 @@ import Express from 'express';
 import http from 'http';
 import morgan from 'morgan';
 import webpack from 'webpack';
-import wpConfig from '../../webpack.config.js';
+import webpackConfig from '../../webpack.config.js';
+import React from 'react';
+import ReactDOM from 'react-dom/server';
+import Base from './Base.js';
 
-const compiler = webpack(wpConfig);
+const compiler = webpack(webpackConfig);
 
 const app = new Express();
 const server = new http.Server(app);
-
-compiler.colors = true;
 
 const { PORT: port, NODE_PATH: srcPath } = process.env;
 
@@ -17,18 +18,20 @@ app.use(morgan('dev'));
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
-  publicPath: wpConfig.output.publicPath,
+  publicPath: webpackConfig.output.publicPath,
   compress: true,
+  hot: true,
+  inline: true,
   stats: { colors: true }
 }));
 
-app.use(require('webpack-hot-middleware')(compiler, {
-  log: console.log,
-  path: '/__webpack_hmr',
-  heartbeat: 10 * 1000,
-}));
+app.use(require('webpack-hot-middleware')(compiler));
 
 app.use('/static', Express.static(`${srcPath}/../static`));
+
+app.use('/', (req, res) =>
+  res.send(`<!DOCTYPE html>\n${ReactDOM.renderToString(<Base />)}`)
+);
 
 server.listen(port, () => {
   const host = server.address().address;
