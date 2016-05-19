@@ -18,7 +18,7 @@
   "homepage": "https://github.com/airroom/redux-cleyton#readme",
   "betterScripts": {
     "start-dev": {
-      "command": "node ./bin/server.js",
+      "command": "node-dev ./bin/server.js",
       "env": {
         "NODE_PATH": "./src",
         "NODE_ENV": "development",
@@ -45,5 +45,8 @@
     "webpack": "1.13.0",
     "webpack-dev-middleware": "1.6.1",
     "webpack-hot-middleware": "2.10.0"
+  },
+  "devDependencies": {
+    "node-dev": "3.1.1"
   }
 }
