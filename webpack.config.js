@@ -6,7 +6,7 @@ const { NODE_PATH: srcPath } = process.env;
 export default {
   devtool: 'source-map',
   resolve: {
-    root: path.resolve(srcPath),
+    root: path.resolve('.'),
     extensions: ['', '.js']
   },
   entry: [
