@@ -2,10 +2,10 @@ import Express from 'express';
 import http from 'http';
 import morgan from 'morgan';
 import webpack from 'webpack';
-import webpackConfig from '../../webpack.config.js';
+import webpackConfig from 'webpack.config.js';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
-import Base from './Base.js';
+import Base from 'src/server/Base.js';
 
 const compiler = webpack(webpackConfig);
 

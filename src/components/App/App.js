@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import AddCleytonFriend from 'src/containers/AddCleytonFriend';
 
 export default class App extends Component {
   render() {
     return (
-      <h1>Hello World</h1>
+      <div>
+        <AddCleytonFriend />
+      </div>
     );
   }
 }
