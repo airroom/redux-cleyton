@@ -1,6 +1,8 @@
 import Express from 'express';
 import http from 'http';
 import morgan from 'morgan';
+import bodyParser from 'body-parser';
+import api from 'src/api';
 import webpack from 'webpack';
 import webpackConfig from 'webpack.config.js';
 import React from 'react';
@@ -14,6 +16,8 @@ const server = new http.Server(app);
 
 const { PORT: port, NODE_PATH: srcPath } = process.env;
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 app.use(require('webpack-dev-middleware')(compiler, {
@@ -28,6 +32,8 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.use('/static', Express.static(`${srcPath}/../static`));
+
+app.use('/api', api);
 
 app.use('/', (req, res) =>
   res.send(`<!DOCTYPE html>\n${ReactDOM.renderToString(<Base />)}`)
