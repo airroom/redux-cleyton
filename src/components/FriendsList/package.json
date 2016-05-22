@@ -1,0 +1,5 @@
+{
+  "name": "FriendsList",
+  "main": "./FriendsList.js",
+  "private": true
+}
